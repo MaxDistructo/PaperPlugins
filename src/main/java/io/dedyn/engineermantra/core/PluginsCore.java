@@ -26,12 +26,11 @@ public class PluginsCore extends JavaPlugin {
         //Start by initializing all sub-plugin instances in our plugins array
         plugins.add(new Soulbound());
 
-        //Start by loading the config for us. This contains the cached list of global soulbound items
+        //Start by loading the config for us.
         this.saveDefaultConfig();
         nbtKey.init(this);
 
-        //Now that we are operational, setup our integrations and enable the command to add more soulbound items
-        //This is so players do not lose money until we are ready to add new items
+        //Now that we are operational, setup our integrations
         setupPermissions();
         setupEconomy();
 
