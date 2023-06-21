@@ -2,7 +2,6 @@ package io.dedyn.engineermantra.soulbound;
 
 import io.dedyn.engineermantra.core.ISubPlugin;
 import io.dedyn.engineermantra.core.PluginsCore;
-import io.dedyn.engineermantra.soulbound.commands.SoulboundCommand;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.NamespacedKey;
@@ -11,7 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
-public class Soulbound implements ISubPlugin {
+public class SoulboundPlugin implements ISubPlugin {
     public static NamespacedKey key;
     public static Permission perms;
     public static Economy econ;
@@ -20,7 +19,7 @@ public class Soulbound implements ISubPlugin {
 
     @Override
     public void onEnable(JavaPlugin plugin) {
-        Soulbound.plugin = plugin;
+        SoulboundPlugin.plugin = plugin;
         // Plugin startup logic
         //Start by loading the config for us. This contains the cached list of global soulbound items
         //TODO: Fix global item soulbind persistance. It only applies to all items that are in player's inventorys

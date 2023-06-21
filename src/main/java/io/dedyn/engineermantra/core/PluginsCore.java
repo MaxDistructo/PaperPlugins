@@ -1,18 +1,13 @@
 package io.dedyn.engineermantra.core;
 
-import io.dedyn.engineermantra.soulbound.Soulbound;
-import io.dedyn.engineermantra.soulbound.commands.SoulboundCommand;
+import io.dedyn.engineermantra.chunkgen.ChunkgenPlugin;
+import io.dedyn.engineermantra.soulbound.SoulboundPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PluginsCore extends JavaPlugin {
     public static Permission perms;
@@ -24,7 +19,8 @@ public class PluginsCore extends JavaPlugin {
     public void onEnable() {
 
         //Start by initializing all sub-plugin instances in our plugins array
-        plugins.add(new Soulbound());
+        plugins.add(new SoulboundPlugin());
+        plugins.add(new ChunkgenPlugin());
 
         //Start by loading the config for us.
         this.saveDefaultConfig();

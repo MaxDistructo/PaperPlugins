@@ -1,6 +1,4 @@
-package io.dedyn.engineermantra.soulbound.commands;
-
-import io.dedyn.engineermantra.soulbound.Soulbound;
+package io.dedyn.engineermantra.soulbound;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
@@ -22,14 +20,14 @@ public class SoulboundCommand implements CommandExecutor {
             Player player = (Player)sender;
             if(label.equals("soulbind"))
             {
-                if(!Soulbound.perms.has(sender, "soulbound.soulbind.self"))
+                if(!SoulboundPlugin.perms.has(sender, "soulbound.soulbind.self"))
                 {
                     sender.sendPlainMessage("You do not have permssion to run this command.");
                 }
                 else {
-                    if(Soulbound.perms.has(sender, "soulbound.soulbind.self.nocost") || Soulbound.econ.has((Player)sender, 100000)){
-                        if(!Soulbound.perms.has(sender, "soulbound.soulbind.self.nocost")) {
-                            Soulbound.econ.withdrawPlayer((Player) sender, 100000);
+                    if(SoulboundPlugin.perms.has(sender, "soulbound.soulbind.self.nocost") || SoulboundPlugin.econ.has((Player)sender, 100000)){
+                        if(!SoulboundPlugin.perms.has(sender, "soulbound.soulbind.self.nocost")) {
+                            SoulboundPlugin.econ.withdrawPlayer((Player) sender, 100000);
                             sender.sendPlainMessage("You have paid $100,000 to Soulbind your held item.");
                         }
                     }
@@ -38,7 +36,7 @@ public class SoulboundCommand implements CommandExecutor {
                         return true;
                     }
                     ItemStack item = player.getInventory().getItemInMainHand();
-                    item.getItemMeta().getPersistentDataContainer().set(Soulbound.key, PersistentDataType.BOOLEAN, true);
+                    item.getItemMeta().getPersistentDataContainer().set(SoulboundPlugin.key, PersistentDataType.BOOLEAN, true);
                     List<Component> lore = item.lore();
                     lore.add(Component.text("Soulbound I"));
                     item.lore(lore);
@@ -48,18 +46,18 @@ public class SoulboundCommand implements CommandExecutor {
             }
             else if(label.equals("gsoulbind"))
             {
-                if(!Soulbound.perms.has(sender, "soulbound.soulbind.global")){
+                if(!SoulboundPlugin.perms.has(sender, "soulbound.soulbind.global")){
                     sender.sendPlainMessage("You do not have permssion to run this command.");
                     return true;
                 }
                 else {
                     ItemStack heldItem = player.getInventory().getItemInMainHand();
-                    Soulbound.globalSoulboundItems.add(heldItem);
+                    SoulboundPlugin.globalSoulboundItems.add(heldItem);
                     //This turns into a 2D array iteration of players and inventories
                     for (Player wplayer : player.getWorld().getPlayers()) {
                         for (ItemStack item : wplayer.getInventory().getContents()) {
                             if (item != null && item.equals(heldItem)) {
-                                item.getItemMeta().getPersistentDataContainer().set(Soulbound.key, PersistentDataType.BOOLEAN, true);
+                                item.getItemMeta().getPersistentDataContainer().set(SoulboundPlugin.key, PersistentDataType.BOOLEAN, true);
                                 List<Component> lore = item.lore();
                                 lore.add(Component.text("Soulbound I"));
                                 item.lore(lore);

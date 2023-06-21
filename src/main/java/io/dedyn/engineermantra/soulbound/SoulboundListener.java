@@ -15,8 +15,8 @@ public class SoulboundListener implements Listener {
     {
         ArrayList<ItemStack> toKeep = new ArrayList<>();
         for(ItemStack drop : event.getDrops()){
-            if(drop.getItemMeta().getPersistentDataContainer().has(Soulbound.key)){
-                if(drop.getItemMeta().getPersistentDataContainer().get(Soulbound.key, PersistentDataType.BOOLEAN).booleanValue())
+            if(drop.getItemMeta().getPersistentDataContainer().has(SoulboundPlugin.key)){
+                if(drop.getItemMeta().getPersistentDataContainer().get(SoulboundPlugin.key, PersistentDataType.BOOLEAN).booleanValue())
                 {
                     event.getItemsToKeep().add(drop);
                     toKeep.add(drop);
@@ -31,11 +31,11 @@ public class SoulboundListener implements Listener {
     {
         //If the player pulls one of the globalSoulbound items into their inventory
         //and it's not soulbound, soulbind it
-        if(Soulbound.globalSoulboundItems.contains(event.getNewItemStack())) {
-            if (!event.getNewItemStack().getItemMeta().getPersistentDataContainer().has(Soulbound.key) ||
-                    !event.getNewItemStack().getItemMeta().getPersistentDataContainer().get(Soulbound.key, PersistentDataType.BOOLEAN).booleanValue())
+        if(SoulboundPlugin.globalSoulboundItems.contains(event.getNewItemStack())) {
+            if (!event.getNewItemStack().getItemMeta().getPersistentDataContainer().has(SoulboundPlugin.key) ||
+                    !event.getNewItemStack().getItemMeta().getPersistentDataContainer().get(SoulboundPlugin.key, PersistentDataType.BOOLEAN).booleanValue())
             {
-                event.getNewItemStack().getItemMeta().getPersistentDataContainer().set(Soulbound.key, PersistentDataType.BOOLEAN, true);
+                event.getNewItemStack().getItemMeta().getPersistentDataContainer().set(SoulboundPlugin.key, PersistentDataType.BOOLEAN, true);
             }
         }
     }
