@@ -7,10 +7,8 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Soulbound implements ISubPlugin {
@@ -43,6 +41,7 @@ public class Soulbound implements ISubPlugin {
         //This is so players do not lose money until we are ready to add new items
         if(PluginsCore.perms != null && PluginsCore.econ != null){
             plugin.getCommand("soulbind").setExecutor(new SoulboundCommand());
+            plugin.getCommand("gsoulbind").setExecutor(new SoulboundCommand());
         }
     }
 

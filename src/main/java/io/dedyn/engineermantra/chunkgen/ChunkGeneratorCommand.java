@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public class ChunkGeneratorCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(label.equals("start"))
+        if(label.equals("cgstart"))
         {
             if(ChunkgenPlugin.perms.has(sender, "chunkgen.start"))
             {
@@ -18,7 +18,7 @@ public class ChunkGeneratorCommand implements CommandExecutor {
                 sender.sendPlainMessage("You do not have permission to run this command.");
             }
         }
-        if(label.equals("stop"))
+        if(label.equals("cgstop"))
         {
             if(ChunkgenPlugin.perms.has(sender, "chunkgen.stop"))
             {
